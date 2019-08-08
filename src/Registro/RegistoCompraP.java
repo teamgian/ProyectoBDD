@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabajosemestral;
+package Registro;
 
 /**
  *
@@ -40,11 +40,7 @@ public class RegistoCompraP extends javax.swing.JFrame {
 
         jLabel1.setText("Patente");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel2.setText("Empresa");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Monto Compra");
 
