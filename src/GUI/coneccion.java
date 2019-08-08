@@ -11,9 +11,10 @@ package GUI;
  */
 
 import java.sql.*;
- class conecion {  public static void main (String args []) throws SQLException
-
-  {    
+class conecion {  
+    public static void main (String args []) throws SQLException
+        
+    {    
     Connection conn = null;
     DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
 
@@ -35,9 +36,5 @@ import java.sql.*;
         System.out.println (rset.getString(1));   // Print col 1
     
     stmt.close();
-                  
-        System.out.println ("hola");   // Print col 1
-
-
   }
  } 

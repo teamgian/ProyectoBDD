@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import Registro.RegistoCompraP;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author AlejandraAndrea
@@ -17,7 +24,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
     }
+    
+    public static Connection con() throws SQLException{
+        Connection conn = null;
+        DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
 
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "ale1509J");
+             //                                         userid,  password
+        if (conn != null){
+            System.out.println("Base de datos conectada");
+        }
+        else{
+            System.out.println("Base de datos no conectada");
+        }
+
+        //consulta
+        Statement stmt = conn.createStatement();
+        ResultSet rset = 
+                  stmt.executeQuery("select Rut_A from Ayudante_e1");
+        while (rset.next())
+            System.out.println (rset.getString(1));   // Print col 1
+
+        stmt.close();
+        return conn;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,13 +62,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         registro = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Menu");
 
         registro.setText("Registro Compra Patente ");
+        registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroActionPerformed(evt);
+            }
+        });
         jMenu1.add(registro);
 
         jMenu4.setText("Categorizacion");
@@ -46,6 +82,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Consulta");
         jMenu1.add(jMenu5);
+
+        jMenu3.setText("jMenu3");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenu3);
 
         jMenuBar1.add(jMenu1);
 
@@ -67,6 +111,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
+        RegistoCompraP ventanita = RegistoCompraP.getInstancia();
+        ventanita.setVisible(true);
+    }//GEN-LAST:event_registroActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        RegistoCompraP ventanita = RegistoCompraP.getInstancia();
+        ventanita.setVisible(true);
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,6 +161,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;

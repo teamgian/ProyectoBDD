@@ -6,13 +6,16 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="registro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registro Compra Patente "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registroActionPerformed"/>
+              </Events>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu4">
               <Properties>
@@ -23,6 +26,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta"/>
               </Properties>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jMenu3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+              </Events>
             </Menu>
           </SubComponents>
         </Menu>
