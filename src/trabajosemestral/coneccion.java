@@ -35,7 +35,9 @@ import java.sql.*;
         System.out.println (rset.getString(1));   // Print col 1
     
     stmt.close();
-    
+                  
+        System.out.println ("hola");   // Print col 1
+
 
   }
  } 
