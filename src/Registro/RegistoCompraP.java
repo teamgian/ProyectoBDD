@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,11 +30,10 @@ public class RegistoCompraP extends javax.swing.JFrame {
     }
     
     public static RegistoCompraP getInstancia() {
-        if(instancia == null)
-        {
+        if (instancia == null) {
             instancia = new RegistoCompraP();
         }
-        return instancia; 
+        return instancia;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +44,7 @@ public class RegistoCompraP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         Patente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -52,8 +53,15 @@ public class RegistoCompraP extends javax.swing.JFrame {
         monto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Lista = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -76,54 +84,88 @@ public class RegistoCompraP extends javax.swing.JFrame {
             }
         });
 
+        Lista.setEditable(false);
+        Lista.setColumns(20);
+        Lista.setRows(5);
+        jScrollPane1.setViewportView(Lista);
+
+        jLabel5.setText("Patente");
+
+        jLabel6.setText("Codigo");
+
+        jLabel7.setText("Fecha");
+
+        jLabel8.setText("Monto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ListaE, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Patente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(monto)))
+                            .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton1)))
-                        .addGap(0, 29, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel8)
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(Patente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(ListaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Patente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ListaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton1)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
 
         pack();
@@ -131,31 +173,68 @@ public class RegistoCompraP extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:ç
-        int Monto = Integer.parseInt(monto.getText());
-        String pat = (String)Patente.getSelectedItem();
-        String empresa = (String)ListaE.getSelectedItem();
-        
+        if (isNumeric(monto.getText())){
+            int Monto = Integer.parseInt(monto.getText());
+            String pat = (String)Patente.getSelectedItem();
+            String empresa = (String)ListaE.getSelectedItem();
+            // insert registro
+            try {
+                MenuPrincipal.con();
+
+                Statement s = MenuPrincipal.con().createStatement();
+
+                int compra = s.executeUpdate("INSERT INTO Compra_e1(Numero_p, codigo, Fecha_compra,monto_compra) values('"
+                +pat+"', "+empresa+","+"Sysdate,"+Monto+")");
+
+                if(compra == 1){ 
+                   JOptionPane.showMessageDialog(null,
+                            "Registro realizado",
+                            "Registro Compra", JOptionPane.INFORMATION_MESSAGE);
+                }
+                s.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);            
+            }
+            
+            try {
+                Statement s1;
+                s1 = MenuPrincipal.con().createStatement();
+                ResultSet resultConsulta = s1.executeQuery("select * from compra_e1");
+                while(resultConsulta.next())
+                {
+                    Lista.append(resultConsulta.getString(1)+ "       " + resultConsulta.getString(2) + "        "+
+                          resultConsulta.getString(3) + "   "+resultConsulta.getString(4)+ "\n"); 
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);     
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Error: No puede ingresar caracteres");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        Patente = new JComboBox();
-        ListaE = new JComboBox();
         try {
             MenuPrincipal.con();
-       
+            Lista.removeAll();
             Statement stmt = MenuPrincipal.con().createStatement();
                     ResultSet rset = stmt.executeQuery("select Numero_P from Patente_e1");
+                    
+            Patente.removeAllItems();
+            ListaE.removeAllItems();
             while(rset.next()){
+                
                 Patente.addItem(rset.getString(1));
             }
-            
+            stmt.close();
             Statement stm = MenuPrincipal.con().createStatement();
                     ResultSet rse = stm.executeQuery("select codigo from Empresa_e1");
             while(rse.next()){
                 ListaE.addItem(rse.getString(1));
             }
-            
+            stmt.close();
             
          } catch (SQLException ex) {
             Logger.getLogger(RegistoCompraP.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,8 +275,18 @@ public class RegistoCompraP extends javax.swing.JFrame {
             }
         });
     }
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } 
+        catch (NumberFormatException nfe){
+            return false;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Lista;
     private javax.swing.JComboBox<String> ListaE;
     private javax.swing.JComboBox<String> Patente;
     private javax.swing.JButton jButton1;
@@ -205,6 +294,12 @@ public class RegistoCompraP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField monto;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package Categorias;
 
+import Registro.RegistoCompraP;
+
 /**
  *
  * @author AlejandraAndrea
@@ -17,7 +19,15 @@ public class Categorizacion extends javax.swing.JFrame {
     public Categorizacion() {
         initComponents();
     }
-
+    
+    private static Categorizacion instancia;
+      
+    public static Categorizacion getInstancia() {
+        if (instancia == null) {
+            instancia = new Categorizacion();
+        }
+        return instancia;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

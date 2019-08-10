@@ -5,6 +5,8 @@
  */
 package Consultas;
 
+import Registro.RegistoCompraP;
+
 /**
  *
  * @author AlejandraAndrea
@@ -17,7 +19,14 @@ public class Consulta1 extends javax.swing.JFrame {
     public Consulta1() {
         initComponents();
     }
-
+    private static Consulta1 instancia;
+    
+    public static Consulta1 getInstancia() {
+        if (instancia == null) {
+            instancia = new Consulta1();
+        }
+        return instancia;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
