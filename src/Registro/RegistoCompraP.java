@@ -174,6 +174,7 @@ public class RegistoCompraP extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:ç
         if (isNumeric(monto.getText())){
+            String Resultado="";
             int Monto = Integer.parseInt(monto.getText());
             String pat = (String)Patente.getSelectedItem();
             String empresa = (String)ListaE.getSelectedItem();
@@ -191,23 +192,18 @@ public class RegistoCompraP extends javax.swing.JFrame {
                             "Registro realizado",
                             "Registro Compra", JOptionPane.INFORMATION_MESSAGE);
                 }
-                s.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex);            
-            }
-            
-            try {
-                Statement s1;
-                s1 = MenuPrincipal.con().createStatement();
-                ResultSet resultConsulta = s1.executeQuery("select * from compra_e1");
+                
+                ResultSet resultConsulta = s.executeQuery("select * from compra_e1");
                 while(resultConsulta.next())
                 {
                     Lista.append(resultConsulta.getString(1)+ "       " + resultConsulta.getString(2) + "        "+
                           resultConsulta.getString(3) + "   "+resultConsulta.getString(4)+ "\n"); 
                 }
+                s.close();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex);     
+                JOptionPane.showMessageDialog(this, ex);            
             }
+            
         }
         else{
         JOptionPane.showMessageDialog(null,"Error: No puede ingresar caracteres");
@@ -217,15 +213,15 @@ public class RegistoCompraP extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         try {
+            monto.setText("");
+            //Lista.setText("");
             MenuPrincipal.con();
-            Lista.removeAll();
             Statement stmt = MenuPrincipal.con().createStatement();
                     ResultSet rset = stmt.executeQuery("select Numero_P from Patente_e1");
-                    
+            
             Patente.removeAllItems();
             ListaE.removeAllItems();
             while(rset.next()){
-                
                 Patente.addItem(rset.getString(1));
             }
             stmt.close();
