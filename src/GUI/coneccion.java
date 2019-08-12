@@ -27,14 +27,11 @@ class conecion {
     else{
         System.out.println("Base de datos no conectada");
     }
-    
-    //consulta
     Statement stmt = conn.createStatement();
     ResultSet rset = 
-              stmt.executeQuery("select Rut_A from Ayudante_e1");
+              stmt.executeQuery("select codigo from empresa_e1");
     while (rset.next())
         System.out.println (rset.getString(1));   // Print col 1
-    
     stmt.close();
   }
  } 

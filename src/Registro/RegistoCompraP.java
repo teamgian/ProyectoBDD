@@ -174,36 +174,40 @@ public class RegistoCompraP extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:ç
         if (isNumeric(monto.getText())){
-            String Resultado="";
             int Monto = Integer.parseInt(monto.getText());
             String pat = (String)Patente.getSelectedItem();
             String empresa = (String)ListaE.getSelectedItem();
-            // insert registro
+           
             try {
                 MenuPrincipal.con();
-
                 Statement s = MenuPrincipal.con().createStatement();
-
                 int compra = s.executeUpdate("INSERT INTO Compra_e1(Numero_p, codigo, Fecha_compra,monto_compra) values('"
                 +pat+"', "+empresa+","+"Sysdate,"+Monto+")");
-
+                s.executeUpdate("update Patente_e1 set Cantidad_Vendida = Cantidad_Vendida + 1 where Numero_P = '" + pat + "'");
                 if(compra == 1){ 
                    JOptionPane.showMessageDialog(null,
                             "Registro realizado",
                             "Registro Compra", JOptionPane.INFORMATION_MESSAGE);
                 }
-                
-                ResultSet resultConsulta = s.executeQuery("select * from compra_e1");
-                while(resultConsulta.next())
-                {
-                    Lista.append(resultConsulta.getString(1)+ "       " + resultConsulta.getString(2) + "        "+
-                          resultConsulta.getString(3) + "   "+resultConsulta.getString(4)+ "\n"); 
-                }
                 s.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex);            
             }
-            
+            try {
+                Statement s1;
+                s1 = MenuPrincipal.con().createStatement();
+                ResultSet resultConsulta = s1.executeQuery("select * from compra_e1");
+                String Result = "";
+                while(resultConsulta.next())
+                {
+                    Result = Result + resultConsulta.getString(1)+ "       " + resultConsulta.getString(2) + "        "+
+                          resultConsulta.getString(3) + "   "+resultConsulta.getString(4)+ "\n"; 
+                }
+                s1.close();
+                Lista.setText(Result);
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistoCompraP.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else{
         JOptionPane.showMessageDialog(null,"Error: No puede ingresar caracteres");
@@ -214,13 +218,11 @@ public class RegistoCompraP extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             monto.setText("");
-            //Lista.setText("");
+            Patente.removeAllItems();
+            ListaE.removeAllItems();
             MenuPrincipal.con();
             Statement stmt = MenuPrincipal.con().createStatement();
                     ResultSet rset = stmt.executeQuery("select Numero_P from Patente_e1");
-            
-            Patente.removeAllItems();
-            ListaE.removeAllItems();
             while(rset.next()){
                 Patente.addItem(rset.getString(1));
             }
@@ -230,7 +232,7 @@ public class RegistoCompraP extends javax.swing.JFrame {
             while(rse.next()){
                 ListaE.addItem(rse.getString(1));
             }
-            stmt.close();
+            stm.close();
             
          } catch (SQLException ex) {
             Logger.getLogger(RegistoCompraP.class.getName()).log(Level.SEVERE, null, ex);

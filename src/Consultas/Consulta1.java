@@ -132,6 +132,7 @@ public class Consulta1 extends javax.swing.JFrame {
             else{
                 System.out.println("Base de datos no conectada");
             }
+            
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery("select E.rubro, count(*) as cantidad\n" +"from empresa_e1 E, compra_e1 C\n" + "where E.codigo=C.codigo\n" + "group by E.rubro");
             String ResultadoConsulta1="";

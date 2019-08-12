@@ -6,6 +6,7 @@
 package GUI;
 
 import Categorias.Categorizacion;
+import Comision.ComisionAutor;
 import Consultas.Consulta1;
 import Consultas.Consulta2;
 import Consultas.Consulta3;
@@ -32,7 +33,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static Connection con() throws SQLException{
         Connection conn = null;
         DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
-
         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "ale1509J");
         //                                                                          userid,  password
         if (conn != null){
@@ -41,6 +41,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         else{
             System.out.println("Base de datos no conectada");
         }
+        
+        
+        
         return conn;
     }
     /**

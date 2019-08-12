@@ -132,12 +132,12 @@ public class Categorizacion extends javax.swing.JFrame {
                 Statement s = MenuPrincipal.con().createStatement();
                 CallableStatement cs = null;
                 cs =  MenuPrincipal.con().prepareCall("{ call categorización_patentesV(?)}");
-                cs.registerOutParameter(1,Types.VARCHAR);
+                //cs.registerOutParameter(1,Types.VARCHAR);
                 cs.setString(1,rut_i);
-                cs.executeBatch();
+                cs.execute();
                 ResultSet rset = s.executeQuery("select clasificacion from inventor_e1 where Rut_I = '" + rut_i + "'" );
                 while (rset.next()){
-                    Categorizacion.append("Categoria: "+rset.getString(1));
+                    Categorizacion.append("Categoria: "+rset.getString("clasificacion"));
                 }
                 s.close();
             } catch (SQLException ex) {
@@ -154,7 +154,7 @@ public class Categorizacion extends javax.swing.JFrame {
             Statement stmt = MenuPrincipal.con().createStatement();
                     ResultSet rset = stmt.executeQuery("select Rut_I from inventor_e1");
             while(rset.next()){
-                Rut_I.addItem(rset.getString(1));
+                Rut_I.addItem(rset.getString("Rut_I"));
             }
             stmt.close();           
          } catch (SQLException ex) {
